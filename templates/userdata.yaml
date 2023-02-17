@@ -70,8 +70,7 @@ runcmd:
   - runuser -l ${guest_user_name} -c "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k"
   # Modify OhMyZsh Profile for osadmin
   - runuser -l ${guest_user_name} -c "sed -i 's/^plugins.*/plugins=(zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc"
-  #- runuser -l ${guest_user_name} -c "sed -i 's/^ZSH_THEME.*/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/' ~/.zshrc"
-  - runuser -l ${guest_user_name} -c "sed -i 's/^ZSH_THEME.*/if [ "$TERM" = \"linux\" ]; then\n  ZSH_THEME=\"robbyrussell\"\nelse\n  ZSH_THEME=\"powerlevel10k\/powerlevel10k\"\nfi/' ~/.zshrc"
+  - runuser -l ${guest_user_name} -c "sed -i 's/^ZSH_THEME.*/if [ "\$TERM" = \"linux\" ]; then\n  ZSH_THEME=\"robbyrussell\"\nelse\n  ZSH_THEME=\"powerlevel10k\/powerlevel10k\"\nfi/' ~/.zshrc"
   - mv /tmp/${guest_user_name}_.p10k.zsh /home/${guest_user_name}/.p10k.zsh
   - chown ${guest_user_name}:${guest_user_name} /home/${guest_user_name}/.p10k.zsh
   - runuser -l ${guest_user_name} -c "echo -e '# To customize prompt, run \`p10k configure\` or edit ~/.p10k.zsh.\n[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh EOF' >> ~/.zshrc"
